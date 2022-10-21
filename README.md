@@ -23,12 +23,10 @@ The code you submit should not be built from a boilerplate.
 * [Requirements](#requirements)
 * [Installation](#installation)
 * [Development](#development)
+* [Frontend](#frontend)
 * [PHP Coding Standard (PHPCS)](#php-coding-standard)
 * [Clean up code with PHPCBF](#clean-up-code-with-phpcbf)
 * [PHP unit tests](#php-unit-tests)
-* [Brief justification](#brief-justification)
-* [Testing](#testing)
-* [How long the test took to complete](#how-long-the-test-took-to-complete)
 
 ## Requirements
 
@@ -37,19 +35,41 @@ Make sure all dependencies have been installed before moving on:
 | Requirement | How to Check | How to Install |
 | :---------- | :----------- | :------------- |
 | PHP >= 7.4 | `php -v` | [php.net](http://php.net/manual/en/install.php) |
+| [WordPress >= 5.9]() | `Admin Footer` | [wordpress.org](https://codex.wordpress.org/Installing_WordPress) |
 | Composer >= 2.1.6 | `composer --version` | [getcomposer.org](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx) |
+| Node >= 14.x | `node -v` | [nodejs.org](https://nodejs.org/) |
+| NPM >= 6.x | `npm -v` | [npm.js](https://www.npmjs.com/) |
+| WP CLI >= 2.4.0 | `wp --info` | [githubusercontent.com](https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar) |
 
 ## 🧞 Installation
 
 ```
 composer install --no-dev
+npm install && npm run build
 ```
 
 ## 👀 Development
 
 ```
 composer install
+npm install && npm run build:production
 ```
+
+## Frontend
+
+All assets are located in `assets/src/*`.
+
+All builds are located in `assets/build/*`.
+
+We use [Laravel Mix](https://laravel-mix.com/) for the assets build. You can modify it in `.webpack.mix.js` file.
+
+For run Laravel mix you can use the next commands depend on situation:
+```
+npm run build
+npm run build:production
+npm run start
+```
+
 
 ## PHP Coding Standard
 
