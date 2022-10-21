@@ -1,0 +1,42 @@
+<?php
+/**
+ * API class file.
+ *
+ * @package formidable-task
+ */
+
+namespace FormidableTask;
+
+/**
+ * Class Main
+ */
+class API {
+
+	/**
+	 * Endpoint remote.
+	 */
+	private const END_POINT_REMOTE = 'http://api.strategy11.com/wp-json/challenge/v1/1';
+
+	/**
+	 * Transient name.
+	 */
+	private const TRANSIENT = 'strategy11-api';
+
+	/**
+	 * Get items form remote server.
+	 *
+	 * @return array
+	 *
+	 * @throws \JsonException JsonException.
+	 */
+	public function get_items(): array {
+		$items = get_transient( self::TRANSIENT );
+		if ( ! $items ) {
+			$response = wp_remote_get( self::END_POINT_REMOTE );
+			$items    = json_decode( $response['body'], true, 512, JSON_THROW_ON_ERROR );
+			set_transient( self::TRANSIENT, $items, 10 );
+		}
+
+		return $items;
+	}
+}
