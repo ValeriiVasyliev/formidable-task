@@ -1,0 +1,121 @@
+.frm_wrap {
+	--medium-grey: #282F36A6;
+	--lightest-grey: #FAFAFA;
+	--primary-color: #4299FD;
+	--primary-hover: #3177C7;
+}
+
+.frm_wrap > .wrap {
+	margin: 10px 40px 30px;
+}
+
+body.frm-white-body {
+	background: #fff;
+}
+
+.frm-white-body #wpcontent {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.frm-white-body .wrap #post-body {
+	padding: 0 20px;
+}
+
+.frm-white-body table.widefat {
+	background: var(--lightest-grey);
+	border-width: 0;
+	box-shadow: none;
+	margin: 20px 0;
+}
+
+.frm-white-body table.widefat tfoot,
+.frm-white-body table.widefat thead {
+	background: #fff;
+}
+
+.frm-white-body table.widefat th {
+	font-size: 16px;
+}
+
+.frm-white-body table.frm-border td {
+	font-size: 14px;
+}
+
+.frm-white-body .striped > tbody > :nth-child(odd) {
+	background-color: #fff;
+}
+
+#frm_top_bar {
+	display: block;
+	width: 100%;
+	max-height: 100px;
+	padding: 25px 40px 25px;
+	margin: 0;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+.frm_top_left {
+	text-align: left;
+	float: left;
+	white-space: nowrap;
+	max-width: 250px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.frm_top_left.frm_top_wide {
+	max-width: 100%;
+}
+
+.frm-header-logo,
+.edit-php.post-type-frm_display .frm-header-logo {
+	float: left;
+	margin: 0 15px 0 0;
+}
+
+.frm_wrap #frm_top_bar h1 {
+	font-size: 22px;
+	font-weight: 400;
+	padding: 0;
+	margin: 0;
+	color: var(--medium-grey);
+	display: inline-block;
+	line-height: 1.4;
+}
+
+#frm-publishing {
+	float: right;
+	margin-top: 15px;
+	width: 225px;
+	min-height: 10px;
+}
+
+h1 .frm-button-primary {
+	font-size: 14px !important;
+	font-weight: normal;
+	margin: 0 5px !important;
+	line-height: 23px !important;
+	vertical-align: text-bottom !important;
+	height: auto !important;
+}
+
+.frm-white-body .button-primary {
+	text-shadow: none;
+	box-shadow: none;
+	border-radius: 30px;
+	border-color: var(--primary-color);
+	font-size: 1em;
+	transition: all .2s ease;
+	padding: 0 15px;
+	height: 28px;
+	min-height: 28px;
+	outline: none;
+	line-height: 26px;
+}
+
+.frm-button-primary {
+	background-color: var(--primary-color) !important;
+	color: #fff !important;
+}

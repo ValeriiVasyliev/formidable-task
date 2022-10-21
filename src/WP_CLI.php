@@ -11,33 +11,20 @@ namespace FormidableTask;
  * Class WP_CLI
  */
 class WP_CLI {
-	/**
-	 * The Plugin instance.
-	 *
-	 * @var Plugin
-	 */
-	protected $plugin;
 
 	/**
-	 * Instantiates the class.
-	 *
-	 * @param Plugin $plugin The plugin object.
+	 * Refresh the user data
 	 */
-	public function __construct( $plugin ) {
-		$this->plugin = $plugin;
-	}
+	public function refresh( $args, $assoc_args ) {
 
-	/**
-	 * Init class.
-	 */
-	public function init() {
-		$this->hooks();
-	}
+		$api = new API();
 
-	/**
-	 * Class hooks.
-	 */
-	protected function hooks() {
+		$items = $api->get_items( true );
 
+		if ( ! $items ) {
+			\WP_CLI::error( 'Error refreshing' );
+		} else {
+			\WP_CLI::success( 'Done!' );
+		}
 	}
 }

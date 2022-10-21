@@ -6,3 +6,4 @@ package-lock.json
 mix-manifest.json
 composer.lock
 assets/version.php
+.phpcs.cache

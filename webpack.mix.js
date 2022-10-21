@@ -1,20 +1,14 @@
-let mix = require('laravel-mix');
+const mix = require('laravel-mix');
+const fs = require('fs');
+const version = "<?php return '" + JSON.stringify(Date.now()) + "';";
 
-let ImageminPlugin = require( 'imagemin-webpack-plugin' ).default;
-mix.webpackConfig( {
-    plugins: [
-        new ImageminPlugin( {
-            // disable: process.env.NODE_ENV !== 'production', // Disable during development
-            // pngquant: {
-            //     quality: '95-100',
-            // },
-            test: /\.(jpe?g|png|gif|svg)$/i,
-        } ),
-    ],
-} ) 
-
-mix.js('assets/src/js/main.js', 'assets/dist')
-   .sass('assets/src/scss/main.scss', 'assets/dist')
-   .copy( 'assets/src/img', 'assets/dist/img', false )
-   .copy( 'assets/src/font', 'assets/dist/font', false )
+mix.js('assets/src/js/admin.js', 'assets/dist/js/')
+   .css('assets/src/css/admin.css', 'assets/dist/css')
+   .css('assets/src/css/front.css', 'assets/dist/css')
    .options({ processCssUrls: false });
+
+fs.writeFile(`assets/version.php`, version, function (err) {
+	if (err) {
+		return console.log(err);
+	}
+});

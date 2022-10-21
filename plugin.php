@@ -24,4 +24,8 @@ if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
 	require_once __DIR__ . '/vendor/autoload.php';
 }
 
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+	\WP_CLI::add_command( 'formidable-task', '\FormidableTask\WP_CLI' );
+}
+
 add_action( 'plugins_loaded', [ new Plugin( new API(), __FILE__ ), 'init' ] );

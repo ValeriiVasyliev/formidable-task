@@ -53,9 +53,11 @@ class Plugin {
 
 		$this->hooks();
 
-		( new Admin( $this ) )->init();
-		( new WP_CLI( $this ) )->init();
-		( new Shortcode( $this ) )->init();
+		( new REST( $this ) )->init();
+
+		is_admin()
+			? ( new Admin( $this ) )->init()
+			: ( new Shortcode( $this ) )->init();
 	}
 
 	/**
@@ -92,6 +94,15 @@ class Plugin {
 	 */
 	public function plugin_url() {
 		return $this->plugin_url;
+	}
+
+	/**
+	 * Get API instance
+	 *
+	 * @return string This plugin's directory.
+	 */
+	public function get_api() {
+		return $this->api;
 	}
 
 	/**

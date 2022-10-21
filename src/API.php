@@ -23,18 +23,23 @@ class API {
 	private const TRANSIENT = 'strategy11-api';
 
 	/**
+	 * Transient name.
+	 */
+	private const TRANSIENT_EXPIRATION = 3600;
+
+	/**
 	 * Get items form remote server.
 	 *
 	 * @return array
 	 *
 	 * @throws \JsonException JsonException.
 	 */
-	public function get_items(): array {
-		$items = get_transient( self::TRANSIENT );
-		if ( ! $items ) {
+	public function get_items( $force = false ): array {
+
+		if ( $force || false === ( $items = get_transient( self::TRANSIENT ) ) ) {
 			$response = wp_remote_get( self::END_POINT_REMOTE );
 			$items    = json_decode( $response['body'], true, 512, JSON_THROW_ON_ERROR );
-			set_transient( self::TRANSIENT, $items, 10 );
+			set_transient( self::TRANSIENT, $items, self::TRANSIENT_EXPIRATION );
 		}
 
 		return $items;
