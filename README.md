@@ -80,7 +80,7 @@ composer unit
 - Unit tests inside `.tests/php/unit/*` folder.
 - Bootstrap file `.tests/php/unit/_bootstrap.php`
 - Each filename for test class must have a suffix on `*Test.php`.
-- Each test class must extend a `WeatherWidgetTests\TestCase` class.
-- You can also add some code to `WeatherWidgetTests\TestCase.php`
+- Each test class must extend a `FormidableTask\TestCase` class.
+- You can also add some code to `FormidableTask\TestCase.php`
 - Each test method must have prefix `test_`
 - Additional files for autoloading in tests running you can add to `.codeception/_support/*` folder.
