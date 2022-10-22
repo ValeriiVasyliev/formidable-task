@@ -12,16 +12,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: composer install
 
-     - name: Install dependencies
-       run: composer install
+      - name: Run unit tests
+        run: composer unit
 
-     - name: Run unit tests
-       run: composer unit
+      - name: Run CS
+        run: composer cs
 
-     - name: Run CS
-       run: composer cs
-
-    - name: Cleanup
-      if: ${{ always() }}
-      uses: rtCamp/action-cleanup@master
+      - name: Cleanup
+        if: ${{ always() }}
+        uses: rtCamp/action-cleanup@master
