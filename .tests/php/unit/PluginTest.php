@@ -26,6 +26,6 @@ class PluginTest extends TestCase {
 	 * Test if the table is showing the expected results
 	 */
 	public function test_table_showing_expected_results() {
-		
+
 	}
 }
