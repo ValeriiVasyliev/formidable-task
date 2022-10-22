@@ -1,4 +1,16 @@
-# Task
+## Table of Contents
+
+* [Task](#task)
+* [Usage](#usage)
+* [Requirements](#requirements)
+* [Installation](#installation)
+* [Development](#development)
+* [Frontend](#frontend)
+* [PHP Coding Standard (PHPCS)](#php-coding-standard)
+* [Clean up code with PHPCBF](#clean-up-code-with-phpcbf)
+* [PHP unit tests](#php-unit-tests)
+
+## Task
 
 Using the GET accessible endpoint http://api.strategy11.com/wp-json/challenge/v1/1 (there are no parameters to/from required), create an AJAX endpoint in WordPress that:
 
@@ -18,24 +30,14 @@ Ensure to properly escape, sanitize and validate data in each step as appropriat
 
 The code you submit should not be built from a boilerplate.
 
-# Usage 
+## Usage 
 
 In order to display the data in the frontend is necessary to add the shortcode `[formidable-task]` in the desired page content.
 
 Use WP CLI command that can be used to force the refresh of this data the next time the AJAX endpoint is called. The command is:
 ```
   wp formidable-task refresh
-``` 
-
-## Table of Contents
-
-* [Requirements](#requirements)
-* [Installation](#installation)
-* [Development](#development)
-* [Frontend](#frontend)
-* [PHP Coding Standard (PHPCS)](#php-coding-standard)
-* [Clean up code with PHPCBF](#clean-up-code-with-phpcbf)
-* [PHP unit tests](#php-unit-tests)
+```
 
 ## Requirements
 
