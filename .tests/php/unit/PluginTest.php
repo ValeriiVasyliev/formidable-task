@@ -8,8 +8,6 @@ use function Brain\Monkey\Functions\when;
 
 class PluginTest extends TestCase {
 
-	protected $instance;
-
 	/**
 	 * Sets the instance.
 	 */
@@ -18,16 +16,16 @@ class PluginTest extends TestCase {
 	}
 
 	/**
-	 * Test init() method
+	 * Test if the request run multiple times an hour
 	 */
-	public function test_init(): void {
+	public function test_request_multiple_times() {
 
 	}
 
 	/**
-	 * Test hooks() method
+	 * Test if the table is showing the expected results
 	 */
-	public function test_hooks(): void {
-
+	public function test_table_showing_expected_results() {
+		
 	}
 }

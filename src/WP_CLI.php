@@ -14,6 +14,10 @@ class WP_CLI {
 
 	/**
 	 * Refresh the user data
+	 *
+	 * @param  array $args  Required arguments for the query.
+	 * @param  array $assoc_args Arguments provided in when invoking the command.
+	 * @return void
 	 */
 	public function refresh( $args, $assoc_args ) {
 

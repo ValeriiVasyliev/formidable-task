@@ -18,6 +18,15 @@ Ensure to properly escape, sanitize and validate data in each step as appropriat
 
 The code you submit should not be built from a boilerplate.
 
+# Usage 
+
+In order to display the data in the frontend is necessary to add the shortcode `[formidable-task]` in the desired page content.
+
+Use WP CLI command that can be used to force the refresh of this data the next time the AJAX endpoint is called. The command is:
+```
+  wp formidable-task refresh
+``` 
+
 ## Table of Contents
 
 * [Requirements](#requirements)

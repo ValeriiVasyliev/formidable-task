@@ -1,25 +1,50 @@
-jQuery(function($){
-    $(document).ready(function () {
-        var get_table = function(refresh = false) {
-            $.ajax({
-                type : "post",
-                url : my_script.ajax_url,
-                dataType: "json",
-                cache: true,
-                data : {action: "get_table", refresh: refresh},
-                success: function(response) {
-                    $('#frmchal-list').html(response.table);
-                    $('#count').html(response.items_qty);
-                    $('#current_date').html(response.current_date);
-                },
-                error: function(response) {
-                    console.error('An error has ocurred, please try again.');
-                }
-            });
-        }
-        get_table();
-        $('#refresh').on("click", function() {
-            get_table(true);
-        });
-    });
+const { __ } = wp.i18n;
+
+jQuery(document).ready(function($){
+
+		const getCredentials = () => {
+			const baseUrl = (templateSettings.apiSettings.root ?? "");
+			const nonce = (templateSettings.apiSettings.nonce ?? "");
+
+			return {
+				baseUrl,
+				nonce
+			}
+		}
+
+		const get_formidable_task_table = function() {
+
+			const { baseUrl, nonce } = getCredentials();
+
+			const path = '/formidable-task/read';
+
+			if (!baseUrl) {
+				console.error(__('HTTP Client is not properly configured', 'formidable-task'));
+			}
+
+			jQuery.ajax({
+					method: 'GET',
+					url: `${baseUrl}${path}`,
+					contentType: 'application/json; charset=utf-8',
+					beforeSend: function ( xhr ) {
+						xhr.setRequestHeader( 'X-WP-Nonce', nonce );
+					},
+					success: function ( response ) {
+						if (response.code == 'ok') {
+							jQuery('#frmchal-list').html(response.html);
+						} else {
+							console.error(__('An error has ocurred, please try again.', 'formidable-task'));
+						}
+					},
+					error: function(response) {
+						console.error(__('An error has ocurred, please try again.', 'formidable-task'));
+					}
+				});
+		};
+
+		jQuery(".frm_top_left a#refresh").click(function() {
+			get_formidable_task_table();
+		});
+
+		get_formidable_task_table();
 });

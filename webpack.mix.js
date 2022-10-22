@@ -3,6 +3,7 @@ const fs = require('fs');
 const version = "<?php return '" + JSON.stringify(Date.now()) + "';";
 
 mix.js('assets/src/js/admin.js', 'assets/dist/js/')
+   .js('assets/src/js/front.js', 'assets/dist/js/')
    .css('assets/src/css/admin.css', 'assets/dist/css')
    .css('assets/src/css/front.css', 'assets/dist/css')
    .options({ processCssUrls: false });

@@ -60,16 +60,17 @@ class Shortcode {
 	 * @return void
 	 */
 	public function enqueue_scripts() {
-		wp_register_script( 'formidable_task_script', $this->plugin->plugin_url() . '/assets/dist/js/admin.js', [ 'jquery' => 'jquery' ], $this->plugin->version_assets() );
+		wp_register_script( 'formidable_task_script', $this->plugin->plugin_url() . '/assets/dist/js/admin.js', [ 'jquery', 'wp-i18n' ], $this->plugin->version_assets(), true );
 		wp_localize_script(
 			'formidable_task_script',
-			'formidable_task_script_data',
+			'templateSettings',
 			[
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'wp-nonce' => wp_create_nonce( 'wp-nonce' ),
+				'apiSettings' => [
+					'root'  => esc_url_raw( untrailingslashit( rest_url() ) ),
+					'nonce' => wp_create_nonce( 'wp_rest' ),
+				],
 			]
 		);
-		wp_enqueue_script( 'formidable_task_script' );
 	}
 
 	/**
@@ -87,8 +88,15 @@ class Shortcode {
 		ob_start();
 		?>
 		<div class="frm_wrap">
+			<div id="frm_top_bar">
+				<div class="frm_top_left frm_top_wide">
+					<h1>
+						<span><?php esc_html_e( 'Formidable Task', 'formidable-task' ); ?></span>
+					</h1>
+				</div>
+			</div>
 			<div class="wrap">
-				<?php echo apply_filters( 'filter_formidable_table_response_response', false ); ?>
+				<div id="frmchal-list"></div>
 			</div>
 		</div>
 		<?php

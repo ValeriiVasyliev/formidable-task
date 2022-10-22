@@ -72,13 +72,15 @@ class Admin {
 	 * Register the scripts for the plugin in the admin side of the site.
 	 */
 	public function enqueue_scripts() {
-		wp_register_script( 'formidable_task_script', $this->plugin->plugin_url() . '/assets/dist/js/admin.js', [ 'jquery' => 'jquery' ], $this->plugin->version_assets() );
+		wp_register_script( 'formidable_task_script', $this->plugin->plugin_url() . '/assets/dist/js/admin.js', [ 'jquery', 'wp-i18n' ], $this->plugin->version_assets(), true );
 		wp_localize_script(
 			'formidable_task_script',
-			'formidable_task_script_data',
+			'templateSettings',
 			[
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'wp-nonce' => wp_create_nonce( 'wp-nonce' ),
+				'apiSettings' => [
+					'root'  => esc_url_raw( untrailingslashit( rest_url() ) ),
+					'nonce' => wp_create_nonce( 'wp_rest' ),
+				],
 			]
 		);
 		wp_enqueue_script( 'formidable_task_script' );
@@ -104,10 +106,9 @@ class Admin {
 						<a id="refresh" ref="#" class="button button-primary frm-button-primary"><?php esc_html_e( 'Refresh', 'formidable-task' ); ?></a>
 					</h1>
 				</div>
-				<div style="clear:right;"></div>
 			</div>
 			<div class="wrap">
-				<?php echo apply_filters( 'filter_formidable_table_response_response', false ); ?>
+				<div id="frmchal-list"></div>
 			</div>
 		</div>
 		<?php

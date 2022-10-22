@@ -30,13 +30,16 @@ class API {
 	/**
 	 * Get items form remote server.
 	 *
+	 * @param boolean $force The param for forcing data from API.
 	 * @return array
 	 *
 	 * @throws \JsonException JsonException.
 	 */
 	public function get_items( $force = false ): array {
 
-		if ( $force || false === ( $items = get_transient( self::TRANSIENT ) ) ) {
+		$items = get_transient( self::TRANSIENT );
+
+		if ( false === $items || true === $force ) {
 			$response = wp_remote_get( self::END_POINT_REMOTE );
 			$items    = json_decode( $response['body'], true, 512, JSON_THROW_ON_ERROR );
 			set_transient( self::TRANSIENT, $items, self::TRANSIENT_EXPIRATION );

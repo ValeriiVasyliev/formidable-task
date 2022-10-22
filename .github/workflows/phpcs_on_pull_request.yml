@@ -1,0 +1,27 @@
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+name: Inspections
+jobs:
+  runPHPCSInspection:
+    name: Run PHPCS inspection
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v2
+
+     - name: Install dependencies
+       run: composer install
+
+     - name: Run unit tests
+       run: composer unit
+
+     - name: Run CS
+       run: composer cs
+
+    - name: Cleanup
+      if: ${{ always() }}
+      uses: rtCamp/action-cleanup@master
