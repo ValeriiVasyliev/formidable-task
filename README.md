@@ -56,14 +56,14 @@ Make sure all dependencies have been installed before moving on:
 
 ```
 composer install --no-dev
-npm install && npm run build
+npm install && npm run build:production
 ```
 
 ## 👀 Development
 
 ```
 composer install
-npm install && npm run build:production
+npm install && npm run build
 ```
 
 ## Frontend
