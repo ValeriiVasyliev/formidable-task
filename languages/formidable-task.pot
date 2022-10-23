@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-10-22T17:55:08+00:00\n"
+"POT-Creation-Date: 2022-10-23T17:32:14+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: formidable-task\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: src/Admin.php:52
 #: src/Admin.php:53
 #: src/Admin.php:105
-#: src/Shortcode.php:94
+#: src/Front.php:94
 msgid "Formidable Task"
 msgstr ""
 
@@ -58,6 +58,14 @@ msgstr[1] ""
 
 #: src/REST.php:167
 msgid "None users"
+msgstr ""
+
+#: src/WP_CLI.php:29
+msgid "Error refreshing"
+msgstr ""
+
+#: src/WP_CLI.php:31
+msgid "Done!"
 msgstr ""
 
 #: assets/src/js/admin.js:22

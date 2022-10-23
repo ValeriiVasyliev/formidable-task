@@ -26,9 +26,9 @@ class WP_CLI {
 		$items = $api->get_items( true );
 
 		if ( ! $items ) {
-			\WP_CLI::error( 'Error refreshing' );
+			\WP_CLI::error( __( 'Error refreshing', 'formidable-task' ) );
 		} else {
-			\WP_CLI::success( 'Done!' );
+			\WP_CLI::success( __( 'Done!', 'formidable-task' ) );
 		}
 	}
 }

@@ -141,7 +141,7 @@ class PluginTest extends TestCase {
 		expect( '\wp_date' )
 			->andReturnUsing(
 				function( $date_string, $time ) {
-					return date( $date_string, $time ); // phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
+					return date( $date_string, $time );
 				}
 			);
 
