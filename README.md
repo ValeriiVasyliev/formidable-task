@@ -72,7 +72,7 @@ All assets are located in `assets/src/*`.
 
 All builds are located in `assets/build/*`.
 
-We use [Laravel Mix](https://laravel-mix.com/) for the assets build. You can modify it in `.webpack.mix.js` file.
+We use [Laravel Mix](https://laravel-mix.com/) for the assets build. You can modify it in `webpack.mix.js` file.
 
 For run Laravel mix you can use the next commands depend on situation:
 ```

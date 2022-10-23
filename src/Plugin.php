@@ -57,7 +57,7 @@ class Plugin {
 
 		is_admin()
 			? ( new Admin( $this ) )->init()
-			: ( new Shortcode( $this ) )->init();
+			: ( new Front( $this ) )->init();
 	}
 
 	/**

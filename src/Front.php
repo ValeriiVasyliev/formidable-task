@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode class file.
+ * Front class file.
  *
  * @package formidable-task
  */
@@ -8,9 +8,9 @@
 namespace FormidableTask;
 
 /**
- * Class Shortcode
+ * Class Front
  */
-class Shortcode {
+class Front {
 	/**
 	 * The Plugin instance.
 	 *

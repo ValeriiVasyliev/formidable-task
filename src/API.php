@@ -7,6 +7,8 @@
 
 namespace FormidableTask;
 
+use Exception;
+
 /**
  * Class Main
  */
@@ -40,9 +42,20 @@ class API {
 		$items = get_transient( self::TRANSIENT );
 
 		if ( false === $items || true === $force ) {
-			$response = wp_remote_get( self::END_POINT_REMOTE );
-			$items    = json_decode( $response['body'], true, 512, JSON_THROW_ON_ERROR );
-			set_transient( self::TRANSIENT, $items, self::TRANSIENT_EXPIRATION );
+			try {
+				$response = wp_remote_get( self::END_POINT_REMOTE );
+				if ( ( ! is_wp_error( $response ) ) && ( 200 === wp_remote_retrieve_response_code( $response ) ) ) {
+					$items = json_decode( $response['body'], true, 512, JSON_THROW_ON_ERROR );
+					if ( json_last_error() === JSON_ERROR_NONE ) {
+						set_transient( self::TRANSIENT, $items, self::TRANSIENT_EXPIRATION );
+					}
+				} else {
+					return false;
+				}
+				// phpcs:ignore Generic.CodeAnalysis.EmptyStatement.DetectedCatch
+			} catch ( Exception $ex ) {
+				// Handle Exception.
+			}
 		}
 
 		return $items;
