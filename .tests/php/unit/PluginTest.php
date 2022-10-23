@@ -2,7 +2,7 @@
 namespace FormidableTaskTests;
 
 use FormidableTask\Plugin;
-use FormidableTask\Api;
+use FormidableTask\API;
 use FormidableTask\REST;
 use function Brain\Monkey\Functions\expect;
 use function Brain\Monkey\Functions\when;
@@ -22,7 +22,7 @@ class PluginTest extends TestCase {
 	 */
 	public function test_request_multiple_times() {
 
-		$instance = \Mockery::mock( Api::class )->makePartial();
+		$instance = \Mockery::mock( API::class )->makePartial();
 
 		when( '\get_transient' )->justReturn( false );
 
