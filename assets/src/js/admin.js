@@ -16,7 +16,7 @@ jQuery(document).ready(function($){
 
 			const { baseUrl, nonce } = getCredentials();
 
-			const path = '/formidable-task/read';
+			const path = '/formidable-task/refresh';
 
 			if (!baseUrl) {
 				console.error(__('HTTP Client is not properly configured', 'formidable-task'));

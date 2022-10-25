@@ -68,6 +68,18 @@ class REST {
 				'callback'            => [ $this, 'read' ],
 			]
 		);
+
+		register_rest_route(
+			self::REST_NAMESPACE,
+			'/refresh',
+			[
+				'methods'             => WP_REST_Server::READABLE,
+				'permission_callback' => function () {
+					return is_user_logged_in() && in_array( 'administrator', wp_get_current_user()->roles, true );
+				},
+				'callback'            => [ $this, 'refresh' ],
+			]
+		);
 	}
 
 	/**
@@ -84,6 +96,26 @@ class REST {
 
 		$response = array_merge(
 			[ 'html' => apply_filters( 'filter_formidable_table_response_response', false ) ],
+			[ 'code' => 'ok' ],
+		);
+
+		return new WP_REST_Response( $response, 200 );
+	}
+
+	/**
+	 * Callback to handler rest api for form data list refresh request
+	 *
+	 * @param WP_REST_Request $request  The request instance.
+	 * @return WP_REST_Response|WP_Error
+	 */
+	public function refresh( WP_REST_Request $request ) {
+
+		if ( ! wp_verify_nonce( sanitize_text_field( $request->get_header( 'X-WP-Nonce' ) ?? '' ), 'wp_rest' ) ) {
+			return new WP_Error( 'invalid_request', __( 'Invalid request.', 'formidable-task' ) );
+		}
+
+		$response = array_merge(
+			[ 'html' => apply_filters( 'filter_formidable_table_response_response', true ) ],
 			[ 'code' => 'ok' ],
 		);
 
