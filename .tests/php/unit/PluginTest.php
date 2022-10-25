@@ -34,6 +34,12 @@ class PluginTest extends TestCase {
 
 		expect( '\set_transient' )->once()->andReturn( true );
 
+		expect( '\sanitize_text_field' )->atLeast()->once()->andReturnUsing(
+			function( $value ) {
+				return $value;
+			}
+		);
+
 		$items1 = $instance->get_items();
 
 		when( '\get_transient' )->justReturn( [ 'test' => 'response' ] );
@@ -45,6 +51,8 @@ class PluginTest extends TestCase {
 		when( '\wp_remote_retrieve_response_code' )->justReturn( 200 );
 
 		expect( '\set_transient' )->never()->andReturn( true );
+
+		expect('\sanitize_text_field')->never();
 
 		$items2 = $instance->get_items();
 

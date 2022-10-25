@@ -47,6 +47,7 @@ class API {
 				if ( ( ! is_wp_error( $response ) ) && ( 200 === wp_remote_retrieve_response_code( $response ) ) ) {
 					$items = json_decode( $response['body'], true, 512, JSON_THROW_ON_ERROR );
 					if ( json_last_error() === JSON_ERROR_NONE ) {
+						$items = $this->sanitize_data( $items );
 						set_transient( self::TRANSIENT, $items, self::TRANSIENT_EXPIRATION );
 					}
 				} else {
@@ -59,5 +60,25 @@ class API {
 		}
 
 		return $items;
+	}
+
+	/**
+	 * Recursive function to sanitize data in an array
+	 *
+	 * @param array|string $data Data for sanitizing.
+	 *
+	 * @return array|string
+	 */
+	public function sanitize_data( $data ) {
+		if ( ! is_array( $data ) ) {
+			return sanitize_text_field( $data );
+		}
+
+		$filtered = [];
+		foreach ( $data as $key => $value ) {
+			$filtered[ $this->sanitize_data( $key ) ] = $this->sanitize_data( $value );
+		}
+
+		return $filtered;
 	}
 }
