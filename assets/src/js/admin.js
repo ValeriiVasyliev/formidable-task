@@ -12,11 +12,11 @@ jQuery(document).ready(function($){
 			}
 		}
 
-		const get_formidable_task_table = function() {
+		const get_formidable_task_table = function(action) {
 
 			const { baseUrl, nonce } = getCredentials();
 
-			const path = '/formidable-task/refresh';
+			const path = '/formidable-task/' + action;
 
 			if (!baseUrl) {
 				console.error(__('HTTP Client is not properly configured', 'formidable-task'));
@@ -43,8 +43,8 @@ jQuery(document).ready(function($){
 		};
 
 		jQuery(".frm_top_left a#refresh").click(function() {
-			get_formidable_task_table();
+			get_formidable_task_table('refresh');
 		});
 
-		get_formidable_task_table();
+		get_formidable_task_table('read');
 });
